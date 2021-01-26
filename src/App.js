@@ -12,7 +12,6 @@ import {
 } from "react-native";
 
 export default function App() {
-
   const [repositories, setRepositories] = useState([]);
 
   useEffect(() => {
@@ -28,7 +27,7 @@ export default function App() {
     const likedRepository = response.data;
 
     const repositoriesUpdated = repositories.map(repository => {
-      if (repository.id === id){
+      if (repository.id === id) {
         return likedRepository;
       } else {
         return repository; 
@@ -43,7 +42,7 @@ export default function App() {
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
       <SafeAreaView style={styles.container}>
-      <FlatList> 
+      <FlatList
         data={repositories} 
         keyExtractor={repository => repository.id} 
         renderItem={({ item: repository }) => ( 
@@ -63,7 +62,7 @@ export default function App() {
                 style={styles.likeText}
                 testID={`repository-likes-${repository.id}`}
               >
-                {repository.likes} curtidas
+                {repository.likes} curtida{repository.likes > 1 ? 's' : ''}
               </Text>
             </View>
             
@@ -76,7 +75,7 @@ export default function App() {
           </TouchableOpacity>
           </View>
         )} 
-      </FlatList>
+      />
       </SafeAreaView>
     </>
   );
